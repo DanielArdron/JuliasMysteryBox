@@ -166,7 +166,20 @@
           <h3>${shipment.name}</h3>
           <p>${shipment.description}</p>
           <span class="pill">${shipment.status}</span>
+          <div class="box-actions">
+            <button type="button" class="pause-button" aria-label="Pause delivery for ${shipment.name}">Pause delivery</button>
+            <p class="pause-message hidden" role="alert">Oops! It looks like you can't cancel this mystery box!</p>
+          </div>
         `;
+        const pauseButton = card.querySelector('.pause-button');
+        const pauseMessage = card.querySelector('.pause-message');
+
+        pauseButton.addEventListener('click', () => {
+          pauseMessage.classList.remove('hidden');
+          pauseButton.classList.remove('shake');
+          void pauseButton.offsetWidth;
+          pauseButton.classList.add('shake');
+        });
         boxList.appendChild(card);
       });
     }
