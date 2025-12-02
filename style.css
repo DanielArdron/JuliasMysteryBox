@@ -71,15 +71,13 @@ main {
   gap: 12px;
 }
 
-.box-icon {
-  font-size: 28px;
-  height: 48px;
-  width: 48px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  background: transparent;
 }
 
 h1 {
