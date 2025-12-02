@@ -65,12 +65,13 @@
     const APP_CONFIG = {
       username: 'julia',
       password: 'mystery123',
-      subscriberName: "Julia",
-      shipments: generateShipments()
+      subscriberName: 'Julia',
+      configPath: 'boxes.json',
+      shipments: generateFallbackShipments()
     };
 
-    // Generate 12 themed shipments starting from the current month
-    function generateShipments() {
+    // Generate default themed shipments starting from the current month
+    function generateFallbackShipments() {
       const themes = [
         'Cosmic Curios',
         'Retro Arcade Revival',
@@ -93,14 +94,55 @@
         const date = new Date(today.getFullYear(), today.getMonth() + i, 1);
         shipments.push({
           id: i + 1,
-          monthLabel: date.toLocaleString(undefined, { month: 'long', year: 'numeric' }),
-          theme: themes[i % themes.length],
+          dateLabel: date.toLocaleString(undefined, { month: 'long', year: 'numeric' }),
+          name: themes[i % themes.length],
           description: `Packed with surprises curated for Julia's ${themes[i % themes.length].toLowerCase()} adventure.`,
           status: i === 0 ? 'Shipping soon' : 'Scheduled'
         });
       }
 
       return shipments;
+    }
+
+    async function loadShipmentsFromFile() {
+      try {
+        const response = await fetch(APP_CONFIG.configPath);
+
+        if (!response.ok) {
+          throw new Error('Unable to fetch box details');
+        }
+
+        const data = await response.json();
+
+        if (Array.isArray(data.shipments)) {
+          APP_CONFIG.shipments = normalizeShipments(data.shipments);
+        }
+
+        if (typeof data.subscriberName === 'string' && data.subscriberName.trim()) {
+          APP_CONFIG.subscriberName = data.subscriberName.trim();
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        subscriberName.textContent = APP_CONFIG.subscriberName;
+      }
+    }
+
+    function normalizeShipments(shipments) {
+      return shipments.map((shipment, index) => {
+        const parsedDate = shipment.date ? new Date(shipment.date) : null;
+        const hasValidDate = parsedDate && !Number.isNaN(parsedDate.valueOf());
+
+        return {
+          id: shipment.id || index + 1,
+          name: shipment.name || `Box ${index + 1}`,
+          dateLabel: hasValidDate
+            ? parsedDate.toLocaleString(undefined, { month: 'long', year: 'numeric' })
+            : `Drop ${index + 1}`,
+          description: shipment.description || 'Surprise details coming soon.',
+          status: shipment.status || 'Scheduled'
+        };
+      });
     }
 
     // --- DOM helpers ---
@@ -120,8 +162,8 @@
         const card = document.createElement('article');
         card.className = 'box-card';
         card.innerHTML = `
-          <div class="box-month">${shipment.monthLabel}</div>
-          <h3>${shipment.theme}</h3>
+          <div class="box-month">${shipment.dateLabel}</div>
+          <h3>${shipment.name}</h3>
           <p>${shipment.description}</p>
           <span class="pill">${shipment.status}</span>
         `;
@@ -152,6 +194,8 @@
         statusBadge.classList.remove('online');
       }
     });
+
+    loadShipmentsFromFile();
   </script>
 </body>
 </html>
