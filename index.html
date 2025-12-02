@@ -56,6 +56,8 @@
     </section>
   </main>
 
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <footer class="site-footer">
     <p>Made for fun as a mock subscription experience. Everything runs client-side for GitHub Pages.</p>
   </footer>
@@ -153,6 +155,7 @@
     const boxList = document.getElementById('boxList');
     const statusBadge = document.getElementById('statusBadge');
     const subscriberName = document.getElementById('subscriberName');
+    const toast = document.getElementById('toast');
 
     subscriberName.textContent = APP_CONFIG.subscriberName;
 
@@ -166,7 +169,18 @@
           <h3>${shipment.name}</h3>
           <p>${shipment.description}</p>
           <span class="pill">${shipment.status}</span>
+          <div class="box-actions">
+            <button type="button" class="pause-button" aria-label="Pause delivery for ${shipment.name}">Pause delivery</button>
+          </div>
         `;
+        const pauseButton = card.querySelector('.pause-button');
+
+        pauseButton.addEventListener('click', () => {
+          pauseButton.classList.remove('shake');
+          void pauseButton.offsetWidth;
+          pauseButton.classList.add('shake');
+          showToast("Oops! It looks like you can't cancel this mystery box!");
+        });
         boxList.appendChild(card);
       });
     }
@@ -196,6 +210,20 @@
     });
 
     loadShipmentsFromFile();
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('visible');
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+      }
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 10000);
+    }
   </script>
 </body>
 </html>
