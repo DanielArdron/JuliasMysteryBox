@@ -3,86 +3,86 @@
   "shipments": [
     {
       "id": 1,
-      "name": "Cosmic Curios",
-      "date": "2024-11-01",
-      "description": "A constellation of glow-in-the-dark trinkets, star maps, and spacey stickers.",
+      "name": "Christmas Kickoff",
+      "date": "2025-12-25",
+      "description": "Get in the christmas spirit!",
       "status": "Shipping soon"
     },
     {
       "id": 2,
-      "name": "Retro Arcade Revival",
-      "date": "2024-12-01",
-      "description": "Mini joystick, pixel art pins, and a nostalgia-packed game zine.",
+      "name": "Winter Warmers",
+      "date": "2026-01-25",
+      "description": "Everything you need to survive the January blues.",
       "status": "Scheduled"
     },
     {
       "id": 3,
-      "name": "Mindful Moments",
-      "date": "2025-01-01",
-      "description": "Tea samplers, pocket journal, and a soft eye pillow for calm nights.",
+      "name": "Valentines Vault",
+      "date": "2026-02-14",
+      "description": "<3",
       "status": "Scheduled"
     },
     {
       "id": 4,
-      "name": "DIY Lab Kit",
-      "date": "2025-02-01",
-      "description": "Hands-on science experiments with safe, home-friendly ingredients.",
+      "name": "???",
+      "date": "2026-03-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 5,
-      "name": "Global Snack Flight",
-      "date": "2025-03-01",
-      "description": "Sweet, salty, and spicy bites curated from favorite foodie cities.",
+      "name": "???",
+      "date": "2026-04-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 6,
-      "name": "Mystery Vinyl",
-      "date": "2025-04-01",
-      "description": "Indie pressing with liner notes, plus a collectible turntable slipmat.",
+      "name": "???",
+      "date": "2026-05-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 7,
-      "name": "Green Thumb Starter",
-      "date": "2025-05-01",
-      "description": "Seed bombs, cute misters, and a guide to building a sunny windowsill garden.",
+      "name": "???",
+      "date": "2026-06-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 8,
-      "name": "Puzzle Master Pack",
-      "date": "2025-06-01",
-      "description": "Pocket puzzle book, metal brain teaser, and an exclusive logic challenge.",
+      "name": "???",
+      "date": "2026-07-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 9,
-      "name": "Coffee Connoisseur",
-      "date": "2025-07-01",
-      "description": "Single-origin beans, tasting cards, and a travel-friendly hand grinder.",
+      "name": "???",
+      "date": "2026-08-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 10,
-      "name": "Weekend Maker Kit",
-      "date": "2025-08-01",
-      "description": "Everything needed to craft a small concrete planter in one afternoon.",
+      "name": "???",
+      "date": "2026-09-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 11,
-      "name": "Midnight Reads",
-      "date": "2025-09-01",
-      "description": "Late-night novella, cozy socks, and a clip-on reading light.",
+      "name": "???",
+      "date": "2026-10-15",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 12,
-      "name": "Glow & Grow Spa Night",
-      "date": "2025-10-01",
-      "description": "Sheet masks, bath salts, and a guided audio link for an at-home reset.",
+      "name": "Birthday bonus",
+      "date": "2026-11-16",
+      "description": "It's a surprise!",
       "status": "Scheduled"
     }
   ]
