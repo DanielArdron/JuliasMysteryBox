@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julia's Mystery Box</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="box-icon" aria-hidden="true">🎁</div>
+      <div>
+        <p class="eyebrow">Gift Subscription</p>
+        <h1>Julia's Mystery Box</h1>
+      </div>
+    </div>
+    <div class="status-badge" id="statusBadge" aria-live="polite">Awaiting login</div>
+  </header>
 
+  <main>
+    <section id="loginSection" class="card">
+      <h2>Welcome, Julia!</h2>
+      <p class="lead">Sign in to peek at the next 12 deliveries waiting in your mystery box queue.</p>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+        </div>
+        <p class="hint">Default login: <code>julia</code> / <code>mystery123</code> (edit in the script below)</p>
+        <button type="submit" class="primary">Open the box</button>
+        <p id="loginError" class="error" role="alert" aria-live="assertive"></p>
+      </form>
+    </section>
+
+    <section id="homeSection" class="card hidden" aria-live="polite">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">12-Month Surprise Run</p>
+          <h2>Here are your upcoming drops</h2>
+          <p class="lead">Track every mystery box in your gifted subscription. Each month unlocks something playful and unexpected.</p>
+        </div>
+        <div class="subscription-meta">
+          <p><strong>Subscriber:</strong> <span id="subscriberName"></span></p>
+          <p><strong>Plan:</strong> 12-month gift</p>
+        </div>
+      </div>
+      <div class="grid" id="boxList" aria-label="Upcoming boxes"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made for fun as a mock subscription experience. Everything runs client-side for GitHub Pages.</p>
+  </footer>
+
+  <script>
+    // --- Configuration ---
+    const APP_CONFIG = {
+      username: 'julia',
+      password: 'mystery123',
+      subscriberName: "Julia",
+      shipments: generateShipments()
+    };
+
+    // Generate 12 themed shipments starting from the current month
+    function generateShipments() {
+      const themes = [
+        'Cosmic Curios',
+        'Retro Arcade Revival',
+        'Mindful Moments',
+        'DIY Lab Kit',
+        'Global Snack Flight',
+        'Mystery Vinyl',
+        'Green Thumb Starter',
+        'Puzzle Master Pack',
+        'Coffee Connoisseur',
+        'Weekend Maker Kit',
+        'Midnight Reads',
+        'Glow & Grow Spa Night'
+      ];
+
+      const today = new Date();
+      const shipments = [];
+
+      for (let i = 0; i < 12; i++) {
+        const date = new Date(today.getFullYear(), today.getMonth() + i, 1);
+        shipments.push({
+          id: i + 1,
+          monthLabel: date.toLocaleString(undefined, { month: 'long', year: 'numeric' }),
+          theme: themes[i % themes.length],
+          description: `Packed with surprises curated for Julia's ${themes[i % themes.length].toLowerCase()} adventure.`,
+          status: i === 0 ? 'Shipping soon' : 'Scheduled'
+        });
+      }
+
+      return shipments;
+    }
+
+    // --- DOM helpers ---
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const loginSection = document.getElementById('loginSection');
+    const homeSection = document.getElementById('homeSection');
+    const boxList = document.getElementById('boxList');
+    const statusBadge = document.getElementById('statusBadge');
+    const subscriberName = document.getElementById('subscriberName');
+
+    subscriberName.textContent = APP_CONFIG.subscriberName;
+
+    function renderBoxes(shipments) {
+      boxList.innerHTML = '';
+      shipments.forEach((shipment) => {
+        const card = document.createElement('article');
+        card.className = 'box-card';
+        card.innerHTML = `
+          <div class="box-month">${shipment.monthLabel}</div>
+          <h3>${shipment.theme}</h3>
+          <p>${shipment.description}</p>
+          <span class="pill">${shipment.status}</span>
+        `;
+        boxList.appendChild(card);
+      });
+    }
+
+    function showHome() {
+      renderBoxes(APP_CONFIG.shipments);
+      loginSection.classList.add('hidden');
+      homeSection.classList.remove('hidden');
+      statusBadge.textContent = 'Logged in';
+      statusBadge.classList.add('online');
+    }
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      loginError.textContent = '';
+
+      const username = loginForm.username.value.trim();
+      const password = loginForm.password.value.trim();
+
+      if (username === APP_CONFIG.username && password === APP_CONFIG.password) {
+        showHome();
+      } else {
+        loginError.textContent = 'Incorrect username or password. Try the defaults or update the config above.';
+        statusBadge.textContent = 'Login failed';
+        statusBadge.classList.remove('online');
+      }
+    });
+  </script>
+</body>
+</html>
