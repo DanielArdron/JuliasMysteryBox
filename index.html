@@ -56,6 +56,8 @@
     </section>
   </main>
 
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <footer class="site-footer">
     <p>Made for fun as a mock subscription experience. Everything runs client-side for GitHub Pages.</p>
   </footer>
@@ -153,6 +155,7 @@
     const boxList = document.getElementById('boxList');
     const statusBadge = document.getElementById('statusBadge');
     const subscriberName = document.getElementById('subscriberName');
+    const toast = document.getElementById('toast');
 
     subscriberName.textContent = APP_CONFIG.subscriberName;
 
@@ -209,6 +212,20 @@
     });
 
     loadShipmentsFromFile();
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('visible');
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+      }
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 10000);
+    }
   </script>
 </body>
 </html>
