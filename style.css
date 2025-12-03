@@ -125,14 +125,14 @@ label {
 input {
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 2px solid #000000;
   background: rgba(241, 236, 232, 0.06);
   color: var(--text);
 }
 
 input:focus {
   outline: 2px solid var(--accent-2);
-  border-color: transparent;
+  border-color: #000000;
 }
 
 .primary {
@@ -183,7 +183,7 @@ input:focus {
 
 .box-card {
   background: var(--card);
-  border: none;
+  border: 2px solid #000000;
   border-radius: 14px;
   padding: 16px;
   display: flex;
@@ -215,7 +215,7 @@ input:focus {
   border-radius: 999px;
   background: var(--accent-2);
   color: #000000;
-  border: 1px solid #000000;
+  border: 2px solid #000000;
   font-weight: 600;
 }
 
@@ -228,12 +228,13 @@ input:focus {
 
 .pause-button {
   background: var(--text);
-  border: 1px solid #000000;
+  border: 2px solid #000000;
   color: #000000;
   padding: 10px 12px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
+  font-family: 'Fredoka', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
   box-shadow: inset 0 0 0 1px rgba(255, 187, 198, 0.2);
 }
