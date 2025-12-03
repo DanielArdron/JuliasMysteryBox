@@ -96,6 +96,10 @@ h3 {
   color: var(--accent-2);
 }
 
+.box-card h3 {
+  font-size: 1.25rem;
+}
+
 .lead {
   color: var(--text);
   margin: 0 0 16px;
