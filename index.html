@@ -167,10 +167,14 @@
         const card = document.createElement('article');
         card.className = 'box-card';
         card.innerHTML = `
-          <div class="box-month">${shipment.dateLabel}</div>
-          <h3>${shipment.name}</h3>
+          <div class="box-top">
+            <div>
+              <div class="box-month">${shipment.dateLabel}</div>
+              <h3>${shipment.name}</h3>
+            </div>
+            <span class="pill">${shipment.status}</span>
+          </div>
           <p>${shipment.description}</p>
-          <span class="pill">${shipment.status}</span>
           <div class="box-actions">
             <button type="button" class="pause-button" aria-label="Pause delivery for ${shipment.name}">Pause delivery</button>
             <p class="pause-message hidden" role="alert">Oops! It looks like you can't cancel this mystery box!</p>
