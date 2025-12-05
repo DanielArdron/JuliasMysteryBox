@@ -205,6 +205,14 @@ input:focus {
   position: relative;
 }
 
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .box-month {
   color: var(--accent);
   letter-spacing: 0.04em;
@@ -212,15 +220,13 @@ input:focus {
 }
 
 .pill {
-  position: absolute;
-  top: 12px;
-  right: 12px;
   padding: 6px 10px;
   border-radius: 999px;
   background: var(--accent-2);
   color: #000000;
   border: 2px solid #000000;
   font-weight: 600;
+  align-self: flex-start;
 }
 
 .box-actions {
