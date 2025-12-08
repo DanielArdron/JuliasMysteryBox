@@ -30,6 +30,10 @@ body {
   padding: 32px;
 }
 
+body.logged-in {
+  background-image: none;
+}
+
 .snow {
   position: fixed;
   inset: 0;

@@ -160,6 +160,7 @@
     const statusBadge = document.getElementById('statusBadge');
     const subscriberName = document.getElementById('subscriberName');
     const toast = document.getElementById('toast');
+    const body = document.body;
 
     subscriberName.textContent = APP_CONFIG.subscriberName;
 
@@ -201,6 +202,7 @@
       homeSection.classList.remove('hidden');
       statusBadge.textContent = 'Logged in';
       statusBadge.classList.add('online');
+      body.classList.add('logged-in');
     }
 
     loginForm.addEventListener('submit', (event) => {
