@@ -359,6 +359,10 @@ input:focus {
   backdrop-filter: blur(2px);
 }
 
+.modal-overlay.hidden {
+  display: none;
+}
+
 .modal-card {
   background: var(--card);
   border: 2px solid #000000;
@@ -382,6 +386,11 @@ input:focus {
 .modal-actions {
   display: flex;
   justify-content: center;
+}
+
+.modal-actions .primary {
+  font-family: 'Fredoka', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.02em;
 }
 
 .confetti {
