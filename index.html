@@ -214,7 +214,7 @@
       if (username === APP_CONFIG.username && password === APP_CONFIG.password) {
         showHome();
       } else {
-        loginError.textContent = 'Incorrect username or password. Try the defaults or update the config above.';
+        loginError.textContent = 'Incorrect username or password. Please check and try again. Usernames and passwords are case sensitive.';
         statusBadge.textContent = 'Login failed';
         statusBadge.classList.remove('online');
       }
