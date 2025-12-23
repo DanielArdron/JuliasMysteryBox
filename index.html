@@ -61,6 +61,25 @@
 
   <div id="toast" role="status" aria-live="polite"></div>
 
+  <div id="confettiLayer" class="confetti hidden" aria-hidden="true"></div>
+
+  <div
+    id="welcomeModal"
+    class="modal-overlay hidden"
+    role="dialog"
+    aria-labelledby="welcomeModalTitle"
+    aria-modal="true"
+  >
+    <div class="modal-card" role="document">
+      <p class="eyebrow">You've logged in</p>
+      <h3 id="welcomeModalTitle">Welcome!</h3>
+      <p>Welcome to Julia's Mystery Box. We're so glad you're here!</p>
+      <div class="modal-actions">
+        <button type="button" id="welcomeContinue" class="primary">Continue</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <p>If you have any trouble using this service, you can get help by contacting <a>support</a></p>
   </footer>
@@ -72,7 +91,8 @@
       password: 'meowychristmas',
       subscriberName: 'Julia',
       configPath: 'boxes.json',
-      shipments: generateFallbackShipments()
+      shipments: generateFallbackShipments(),
+      enableWelcomeModal: true
     };
 
     // Generate default themed shipments starting from the current month
@@ -160,6 +180,9 @@
     const subscriberName = document.getElementById('subscriberName');
     const toast = document.getElementById('toast');
     const body = document.body;
+    const welcomeModal = document.getElementById('welcomeModal');
+    const welcomeContinue = document.getElementById('welcomeContinue');
+    const confettiLayer = document.getElementById('confettiLayer');
 
     subscriberName.textContent = APP_CONFIG.subscriberName;
 
@@ -202,6 +225,58 @@
       statusBadge.textContent = 'Logged in';
       statusBadge.classList.add('online');
       body.classList.add('logged-in');
+      showWelcomeModal();
+    }
+
+    function showWelcomeModal() {
+      if (!APP_CONFIG.enableWelcomeModal) {
+        return;
+      }
+
+      welcomeModal.classList.remove('hidden');
+      startConfetti();
+
+      if (welcomeContinue) {
+        welcomeContinue.focus({ preventScroll: true });
+      }
+    }
+
+    function hideWelcomeModal() {
+      welcomeModal.classList.add('hidden');
+      stopConfetti();
+    }
+
+    function startConfetti() {
+      if (!APP_CONFIG.enableWelcomeModal || !confettiLayer) {
+        return;
+      }
+
+      const colors = ['#ffbbc6', '#8fdddd', '#ffe08a', '#c3b3ff', '#d8ffd2'];
+      confettiLayer.innerHTML = '';
+      confettiLayer.classList.remove('hidden');
+
+      for (let i = 0; i < 90; i++) {
+        const piece = document.createElement('span');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.setProperty('--duration', `${3 + Math.random() * 2}s`);
+        piece.style.setProperty('--rotation', `${180 + Math.random() * 360}deg`);
+        piece.style.backgroundColor = colors[i % colors.length];
+        piece.style.opacity = `${0.65 + Math.random() * 0.35}`;
+        piece.style.width = `${8 + Math.random() * 6}px`;
+        piece.style.height = `${12 + Math.random() * 10}px`;
+        piece.style.animationDelay = `${Math.random() * 0.8}s`;
+        confettiLayer.appendChild(piece);
+      }
+    }
+
+    function stopConfetti() {
+      if (!confettiLayer) {
+        return;
+      }
+
+      confettiLayer.classList.add('hidden');
+      confettiLayer.innerHTML = '';
     }
 
     loginForm.addEventListener('submit', (event) => {
@@ -217,6 +292,14 @@
         loginError.textContent = 'Incorrect username or password. Please check and try again. Usernames and passwords are case sensitive.';
         statusBadge.textContent = 'Login failed';
         statusBadge.classList.remove('online');
+      }
+    });
+
+    welcomeContinue.addEventListener('click', hideWelcomeModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !welcomeModal.classList.contains('hidden')) {
+        hideWelcomeModal();
       }
     });
 
