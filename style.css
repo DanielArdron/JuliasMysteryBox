@@ -398,7 +398,7 @@ input:focus {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 9;
+  z-index: 20;
 }
 
 .confetti-piece {
