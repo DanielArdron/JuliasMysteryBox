@@ -6,7 +6,7 @@
       "name": "Christmas Kickoff",
       "date": "2025-12-25",
       "description": "Get in the christmas spirit!",
-      "status": "Shipping soon"
+      "status": "Delivered"
     },
     {
       "id": 2,
@@ -24,14 +24,14 @@
     },
     {
       "id": 4,
-      "name": "???",
+      "name": "March Mystery",
       "date": "2026-03-15",
       "description": "It's a surprise!",
       "status": "Scheduled"
     },
     {
       "id": 5,
-      "name": "???",
+      "name": "Amazing April",
       "date": "2026-04-15",
       "description": "It's a surprise!",
       "status": "Scheduled"
