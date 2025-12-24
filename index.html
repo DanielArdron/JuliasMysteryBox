@@ -227,6 +227,15 @@
       });
     }
 
+    function scrollToTop() {
+      if (typeof window === 'undefined') return;
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
     function showHome() {
       renderBoxes(APP_CONFIG.shipments);
       loginSection.classList.add('hidden');
@@ -234,6 +243,7 @@
       statusBadge.textContent = 'Logged in';
       statusBadge.classList.add('online');
       body.classList.add('logged-in');
+      scrollToTop();
       showWelcomeModal();
     }
 
