@@ -191,6 +191,8 @@
       shipments.forEach((shipment) => {
         const card = document.createElement('article');
         card.className = 'box-card';
+        const isDelivered = typeof shipment.status === 'string' && shipment.status.toLowerCase() === 'delivered';
+
         card.innerHTML = `
           <div class="box-top">
             <div>
@@ -200,20 +202,27 @@
             <span class="pill">${shipment.status}</span>
           </div>
           <p>${shipment.description}</p>
-          <div class="box-actions">
-            <button type="button" class="pause-button" aria-label="Pause delivery for ${shipment.name}">Pause delivery</button>
-            <p class="pause-message hidden" role="alert">Oops! It looks like you can't cancel this mystery box!</p>
-          </div>
+          ${
+            isDelivered
+              ? ''
+              : `<div class="box-actions">
+                  <button type="button" class="pause-button" aria-label="Pause delivery for ${shipment.name}">Pause delivery</button>
+                  <p class="pause-message hidden" role="alert">Oops! It looks like you can't cancel this mystery box!</p>
+                </div>`
+          }
         `;
-        const pauseButton = card.querySelector('.pause-button');
-        const pauseMessage = card.querySelector('.pause-message');
 
-        pauseButton.addEventListener('click', () => {
-          pauseMessage.classList.remove('hidden');
-          pauseButton.classList.remove('shake');
-          void pauseButton.offsetWidth;
-          pauseButton.classList.add('shake');
-        });
+        if (!isDelivered) {
+          const pauseButton = card.querySelector('.pause-button');
+          const pauseMessage = card.querySelector('.pause-message');
+
+          pauseButton.addEventListener('click', () => {
+            pauseMessage.classList.remove('hidden');
+            pauseButton.classList.remove('shake');
+            void pauseButton.offsetWidth;
+            pauseButton.classList.add('shake');
+          });
+        }
         boxList.appendChild(card);
       });
     }
