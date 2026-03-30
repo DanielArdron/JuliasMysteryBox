@@ -35,13 +35,7 @@ body.logged-in {
 }
 
 .snow {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  animation: hearts-fall 24s linear infinite;
-  z-index: 1;
+  display: none;
 }
 
 .snow--far {
