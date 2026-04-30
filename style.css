@@ -439,3 +439,11 @@ input:focus {
     align-self: center;
   }
 }
+
+.april-logo {
+  width: min(260px, 100%);
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 8px 0 4px;
+}

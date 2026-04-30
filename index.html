@@ -80,6 +80,24 @@
     </div>
   </div>
 
+  <div
+    id="aprilModal"
+    class="modal-overlay hidden"
+    role="dialog"
+    aria-labelledby="aprilModalTitle"
+    aria-modal="true"
+  >
+    <div class="modal-card" role="document">
+      <p class="eyebrow">April Mystery Box Delivered</p>
+      <img src="assets/sixbynico-logo.svg" alt="Six by Nico logo" class="april-logo" />
+      <h3 id="aprilModalTitle">April Surprise: Six by Nico ✨</h3>
+      <p>Your April gift is a meal of your choice at Six by Nico in Birmingham.</p>
+      <div class="modal-actions">
+        <button type="button" id="aprilContinue" class="primary">Amazing!</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <p>If you have any trouble using this service, you can get help by contacting <a>support</a></p>
   </footer>
@@ -88,7 +106,7 @@
     // --- Configuration ---
     const APP_CONFIG = {
       username: 'julia',
-      password: 'marchmeowstery',
+      password: 'm3ow',
       subscriberName: 'Julia',
       configPath: 'boxes.json',
       shipments: generateFallbackShipments(),
@@ -183,6 +201,8 @@
     const welcomeModal = document.getElementById('welcomeModal');
     const welcomeContinue = document.getElementById('welcomeContinue');
     const confettiLayer = document.getElementById('confettiLayer');
+    const aprilModal = document.getElementById('aprilModal');
+    const aprilContinue = document.getElementById('aprilContinue');
 
     subscriberName.textContent = APP_CONFIG.subscriberName;
 
@@ -245,6 +265,11 @@
       body.classList.add('logged-in');
       scrollToTop();
       showWelcomeModal();
+      aprilModal.classList.remove('hidden');
+
+      if (aprilContinue) {
+        aprilContinue.focus({ preventScroll: true });
+      }
     }
 
     function showWelcomeModal() {
@@ -316,9 +341,17 @@
 
     welcomeContinue.addEventListener('click', hideWelcomeModal);
 
+    aprilContinue.addEventListener('click', () => {
+      aprilModal.classList.add('hidden');
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && !welcomeModal.classList.contains('hidden')) {
         hideWelcomeModal();
+      }
+
+      if (event.key === 'Escape' && !aprilModal.classList.contains('hidden')) {
+        aprilModal.classList.add('hidden');
       }
     });
 
