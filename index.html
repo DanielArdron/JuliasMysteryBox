@@ -110,7 +110,8 @@
       subscriberName: 'Julia',
       configPath: 'boxes.json',
       shipments: generateFallbackShipments(),
-      enableWelcomeModal: false
+      enableWelcomeModal: false,
+      enableAprilModal: false
     };
 
     // Generate default themed shipments starting from the current month
@@ -265,6 +266,14 @@
       body.classList.add('logged-in');
       scrollToTop();
       showWelcomeModal();
+      showAprilModal();
+    }
+
+    function showAprilModal() {
+      if (!APP_CONFIG.enableAprilModal) {
+        return;
+      }
+
       aprilModal.classList.remove('hidden');
 
       if (aprilContinue) {
