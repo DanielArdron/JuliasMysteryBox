@@ -38,17 +38,17 @@
     },
     {
       "id": 6,
-      "name": "???",
+      "name": "Pizza Paradise",
       "date": "2026-05-15",
-      "description": "It's a surprise!",
-      "status": "Scheduled"
+      "description": "Pizzzaaaa",
+      "status": "Delivered"
     },
     {
       "id": 7,
-      "name": "???",
+      "name": "Jaipur June",
       "date": "2026-06-15",
-      "description": "It's a surprise!",
-      "status": "Scheduled"
+      "description": "Victory not guaranteed",
+      "status": "Delivered"
     },
     {
       "id": 8,
