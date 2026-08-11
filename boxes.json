@@ -52,14 +52,14 @@
     },
     {
       "id": 8,
-      "name": "???",
+      "name": "Mosaic Madness",
       "date": "2026-07-15",
-      "description": "It's a surprise!",
-      "status": "Scheduled"
+      "description": "Workshop time",
+      "status": "Delivered"
     },
     {
       "id": 9,
-      "name": "???",
+      "name": "Dip 'n' Rub",
       "date": "2026-08-15",
       "description": "It's a surprise!",
       "status": "Scheduled"
